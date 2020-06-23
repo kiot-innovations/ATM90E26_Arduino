@@ -23,7 +23,7 @@
  *******************/
 #include "energyic_SPI.h"
 
-ATM90E26_SPI eic;
+ATM90E26_SPI eic(PA4);
 
 void setup() {
   /* Initialize the serial port to host */

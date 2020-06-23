@@ -36,7 +36,7 @@ void ATM90E26_SPI::SetCRC2(unsigned short crc2) { _crc2 = crc2;}
 	unsigned short output;
   //SPI interface rate is 200 to 160k bps. It Will need to be slowed down for EnergyIC
   #if !defined(ENERGIA) && !defined(ESP8266) && !defined(ARDUINO_ARCH_SAMD)
-  SPISettings settings(200000, MSBFIRST, SPI_MODE3);
+  SPISettings settings(400000, MSBFIRST, SPI_MODE0);
   #endif
    
 
@@ -60,7 +60,7 @@ void ATM90E26_SPI::SetCRC2(unsigned short crc2) { _crc2 = crc2;}
   SPI.beginTransaction(settings);
   #endif
   //Disable LoRa chip on M0-LoRa
-  digitalWrite (8,HIGH);     
+  // digitalWrite (8,HIGH);     
 	digitalWrite (_cs,LOW);
   delayMicroseconds(10);
 	SPI.transfer(address);
@@ -92,7 +92,7 @@ void ATM90E26_SPI::SetCRC2(unsigned short crc2) { _crc2 = crc2;}
   
 	digitalWrite(_cs,HIGH);
   //Reenable LoRa chip on M0-LoRa
-  digitalWrite(8,LOW);
+  // digitalWrite(8,LOW);
   delayMicroseconds(10);
   #if !defined(ENERGIA)
   SPI.endTransaction();
